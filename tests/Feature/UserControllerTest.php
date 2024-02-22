@@ -217,6 +217,8 @@ class UserControllerTest extends TestCase
         //Set the Headers
         $this->setHeaders($token);
         $id = User::where('role', 2)->first()->id;
+
+        //Make the Api Call
         $response = $this->json('delete',"/api/user/delete/$id",[], $this->getHeaders());
         $response->assertStatus(200)
         ->assertJsonStructure([]);

@@ -11,6 +11,8 @@ use Faker\Factory as Faker;
 
 class AuthenticationTest extends TestCase
 {
+    use TestHeaders;
+
     /**
      * A feature test for the registration feature
      */
@@ -70,5 +72,29 @@ class AuthenticationTest extends TestCase
             "code",
             "data"
         ]);
-     }
+    }
+
+    /**
+     * A feature test for the logout feature
+     */
+
+     public function test_logout()
+     {
+        // The User Logs in
+        $email = User::where('role', 1)->select('email')->first()->email;
+        $array = [
+            "email" => $email,
+            "password" => "123Password"
+        ];
+        $response = $this->json('post','/api/login', $array);
+        $token = $response['data']['token'];
+
+        //Set the Headers
+        $this->setHeaders($token);
+
+        //Make the Api Call
+        $response = $this->json('get',"/api/logout",[], $this->getHeaders());
+        $response->assertStatus(200)
+        ->assertJsonStructure([]);
+    }
 }
