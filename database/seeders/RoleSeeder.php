@@ -17,8 +17,8 @@ class RoleSeeder extends Seeder
     {
         if (Role::count() === 0) {
             Role::insert([
-                ['roleName' => 'Admin'],
-                ['roleName' => 'User'],
+                ['roleName' => 'Admin', 'created_at' => now(), 'updated_at' => now()],
+                ['roleName' => 'User', 'created_at' => now(), 'updated_at' => now()],
             ]);
         }
     }
