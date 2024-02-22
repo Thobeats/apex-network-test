@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use App\Trait\TestHeaders;
+use App\Trait\TestRoles;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -11,7 +12,7 @@ use Faker\Factory as Faker;
 
 class AuthenticationTest extends TestCase
 {
-    use TestHeaders;
+    use TestHeaders, TestRoles;
 
     /**
      * A feature test for the registration feature
@@ -23,7 +24,7 @@ class AuthenticationTest extends TestCase
             "name" => "test",
             "email" => fake()->email(),
             "password" => "123Password",
-            "role" => random_int(1,2)
+            "role" => $this->randomRole()
         ];
         $response = $this->json('post','/api/register', $array);
         $response->assertStatus(200)->assertJsonStructure([

@@ -28,7 +28,13 @@ php artisan key:generate
 php artisan migrate
 ```
 
-<p>5. Run the seeders</p>
+<p>5. Create Passport Client</p>
+
+```
+php artisan passport:install
+```
+
+<p>6. Run the seeders</p>
 
 ```
 php artisan db:seed

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Role;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -23,11 +24,24 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+         // Create roles if not exists
+         if (Role::count() === 0) {
+            Role::insert([
+                ['roleName' => 'Admin'],
+                ['roleName' => 'User'],
+            ]);
+         }
+
+        // Get the roles
+        $adminRole = Role::where('roleName', 'Admin')->first();
+        $userRole = Role::where('roleName', 'User')->first();
+        
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'role' => random_int($adminRole->id, $userRole->id),
+            'password' => static::$password ??= Hash::make('123Password'),
             'remember_token' => Str::random(10),
         ];
     }
