@@ -27,9 +27,33 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
+            /**
+             * Your name
+             * @var string
+             * @example John 
+             * 
+             */
             "name" => "required|string|min:3",
+            /**
+             * Your email
+             * @var string
+             * @example John@example.com 
+             * 
+             */
             "email" => "required|email",
+            /**
+             * Your password
+             * @var string
+             * @example 123Password
+             * 
+             */
             "password" => "required|string|min:8",
+            /**
+             * Your role: 1 for Admin, 2 for User
+             * @var integer
+             * @example 1
+             * 
+             */
             "role" => "required|exists:roles,id"
         ];
     }

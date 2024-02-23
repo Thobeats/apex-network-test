@@ -32,6 +32,10 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * @param integer The user's id
+     */
+
     public function get($userId)
     {
         try{
@@ -49,6 +53,10 @@ class UserController extends Controller
         }
     }
 
+    /**
+     * @param integer The user's id
+     */
+
     public function update(UserRequest $request, $userId)
     {
         try{
@@ -58,6 +66,10 @@ class UserController extends Controller
             return $this->error([], $e->getMessage(),400);
         }
     }
+
+    /**
+     * @param integer The user's id
+     */
 
     public function delete($userId)
     {

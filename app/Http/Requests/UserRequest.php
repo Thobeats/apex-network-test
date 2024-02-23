@@ -28,9 +28,33 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
+            /**
+             * The new user's name
+             * @var string
+             * @example John 
+             * 
+             */
             "name" => "required|string|min:3",
+            /**
+             * The new user's email
+             * @var string
+             * @example John@example.com 
+             * 
+             */
             "email" => "required|email",
+            /**
+             * The new user's password
+             * @var string
+             * @example 123Password
+             * 
+             */
             "password" => "required|string|min:8",
+            /**
+             * The new user's role: 1 for Admin, 2 for User
+             * @var integer
+             * @example 1
+             * 
+             */
             "role" => "required|exists:roles,id"
         ];
     }
