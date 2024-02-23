@@ -22,19 +22,30 @@ cp .env.example .env
 php artisan key:generate
 ```
 
-<p>4. Run the migrations</p>
+<p>4. Add your DB credentials</p>
+
+```
+DB_CONNECTION=(mysql or pgsql or oracle)
+DB_HOST=(DB Host)
+DB_PORT=(DB Port)
+DB_DATABASE=yourDB
+DB_USERNAME=yourUsername
+DB_PASSWORD=yourPassword
+```
+
+<p>5. Run the migrations</p>
 
 ```
 php artisan migrate
 ```
 
-<p>5. Create Passport Client</p>
+<p>6. Create Passport Client</p>
 
 ```
 php artisan passport:install
 ```
 
-<p>6. Run the seeders</p>
+<p>7. Run the seeders</p>
 
 ```
 php artisan db:seed
@@ -46,7 +57,7 @@ php artisan db:seed
 php artisan serve
 ```
 
-<h2> To run the tests </h2>
+<h2> Run tests </h2>
 
 ```
 php artisan test
