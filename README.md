@@ -51,3 +51,5 @@ php artisan serve
 ```
 php artisan test
 ```
+
+<h2> go to the "/docs/api" route to see the API documentation </h2>
